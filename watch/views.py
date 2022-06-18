@@ -11,9 +11,9 @@ class PostList(ListView):
     def get_queryset(self):
         return Posts.objects.all()
 
-# def post_list(request):
-#     posts = models.Posts.objects.all()
-#     return render(request, "watch/posts_list.html", {'post':post})
+def post_list(request):
+    posts = models.Posts.objects.all()
+    return render(request, "watch/posts_list.html", {'post':post})
 
 # class PostCreate(CreateView):
 #     model = Posts
