@@ -1,6 +1,8 @@
-<h1 class="text-center" > Create New Post</h1>
-<form action="{% url 'new' %}" method="POST" enctype="multipart/form-data" style="margin-left: 150px;">
-{% csrf_token %}
-{{ form.as_p}}
-<input type="submit" value="Post" class="btn btn-secondary">
-</form>
+<div class="container" style="background-color:rgb(184, 184, 175); height: 100vh; font-family: cursive; text-align: center;" >
+    <h1 > Create New Post</h1>
+    <form action="{% url 'new' %}" method="POST" enctype="multipart/form-data" >
+    {% csrf_token %}
+    {{ form.as_p}}
+    <input type="submit" value="Post" class="btn btn-secondary">
+    </form>
+</div>

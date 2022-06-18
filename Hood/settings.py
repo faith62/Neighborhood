@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'login',
     'watch',
     'bootstrap4',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
