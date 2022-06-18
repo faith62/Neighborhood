@@ -1,6 +1,7 @@
 from django.db import models
+from Cloudinary.models import CloudField
 
-# Create your models here.
+
 class Neighbourhood(models.Model):
     """
     Neighbourhood class to define the neighbourhoods present
@@ -14,3 +15,13 @@ class Neighbourhood(models.Model):
     health = models.IntegerField()
     education = models.IntegerField()
     hood_logo = CloudinaryField('image')
+    def __str__(self):
+        return self.save()
+    def create_neighbourhood(self):
+        return self.save()
+    def delete_neighbourhood(self):
+        return self.delete()
+
+    @classmethod
+    def find_neighbourhood(cls,neighbourhood_id):
+        return cls.objects.filter(id=neighbourhood_id)
