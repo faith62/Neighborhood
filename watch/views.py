@@ -6,7 +6,7 @@ from .models import  business
 from .serializer import businessSerializer
 
 # Create your views here.
-class BusinessList(APIView):
+class businessList(APIView):
     def get(self, request, format=None):
         all_merch = business.objects.all()
         serializers = businessSerializer(all_merch, many=True)
