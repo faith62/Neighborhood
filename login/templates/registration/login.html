@@ -1,4 +1,11 @@
 {% extends 'watch/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title%}
+Login Here
+{% endblock %}
+
+
 
 {% block content %}
 <div class="container">
@@ -8,7 +15,7 @@
             <form action="" method="post" novalidate>
                 {% csrf_token %}
                 {{ form|crispy }} 
-                <button class="btn btn-sm btn-info">Login Here</button>
+                <button class="btn btn-sm btn-info">Login</button>
             </form>
         </div>
         <div class="col-md-3"></div>
