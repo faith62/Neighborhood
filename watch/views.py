@@ -28,7 +28,7 @@ class BusinessList(APIView):
         
         return render(request,'', {'business':business})
 
-    def search_results(request):
+    def search_business(request):
         if 'business' in request.GET and request.GET["business"]:
             business_name = request.GET.get("business")
             searched_business = Business.find_business(business_name)
