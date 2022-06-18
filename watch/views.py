@@ -15,7 +15,7 @@ def post_list(request):
     posts = models.Posts.objects.all()
     return render(request, "watch/posts_list.html", {'post':post})
 
-# class PostCreate(CreateView):
-#     model = Posts
-#     fields = ['image', 'title', 'description']
-#     success_url = '/'
+class PostCreate(CreateView):
+    model = Posts
+    fields = ['image', 'title', 'description']
+    success_url = '/'
