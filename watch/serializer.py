@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from .models import business
+from .models import Business
 
-class businessSerializer(serializers.ModelSerializer):
+class BusinessSerializer(serializers.ModelSerializer):
     class Meta:
-        model = business
-        fields= ('business_name','business_email', 'user')
+        model = Business
+        fields= ('bsn_name','bsn_email', 'user')
