@@ -1,4 +1,31 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="homepage">
+    <div class="row">
+        <div class="col-md-3">
+            <ul>
+                <li class="nav-items"><a href="">Police Station</a></li>
+                <li class="nav-items"><a href="">Hair & Grooming</a></li>
+                <li class="nav-items"><a href="">Hospitals</a></li>
+                <li class="nav-items"><a href="">Malls & Market</a></li>
+                <li class="nav-items"><a href="">Food Joints</a></li>
+            </ul>
+        </div>
+        <div class="col-md-9">
+            <div class="d-flex justify-content-center">
+                {% for post in posts %}
+                <div class="card post-card" style="width: 18rem;">
+                    <img class="card-img-top" src="{{post.image.url}}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{post.title}}</h5>
+                        <p class="card-text">{{post.description}}</p>
+                        <p class="card-text">Post by: {{post.profile.name}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
