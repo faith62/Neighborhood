@@ -7,11 +7,11 @@
             <br>
             <h3 class="p-2 font-weight-bold">Amenities</h3>
             <ul class="">
-                <li class="nav-items"><a href="">Police Station</a></li>
-                <li class="nav-items"><a href="">Hair & Grooming</a></li>
-                <li class="nav-items"><a href="">Hospitals</a></li>
-                <li class="nav-items"><a href="">Malls & Market</a></li>
-                <li class="nav-items"><a href="">Food Joints</a></li>
+                <li class="nav-items"><a href="{% url 'police' %}">Police Station</a></li>
+                <li class="nav-items"><a href="{% url 'hair&grooming' %}">Hair & Grooming</a></li>
+                <li class="nav-items"><a href="{% url 'hospital' %}">Hospitals</a></li>
+                <li class="nav-items"><a href="{% url 'malls_and_markets' %}">Malls & Market</a></li>
+                <li class="nav-items"><a href="{% url 'fastfood' %}">Food Joints</a></li>
             </ul>
         </div>
         <div class="col-md-9 post-display">
@@ -19,8 +19,8 @@
                 <div class="row">
                     {% for post in posts %}
                     <div class="col-md-4">
-                        <div class="card post-card" style="width: 18rem;">
-                            <img class="card-img-top" src="{{post.image.url}}" alt="Card image cap">
+                        <div class="card post-card" style="width:20rem;">
+                            <img class="card-img-top post-card-img" src="{{post.image.url}}" alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title">{{post.title}}</h5>
                                 <p class="card-text">{{post.description}}</p>
