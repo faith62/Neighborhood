@@ -15,9 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+#from watch.views import PostList,PostCreate
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('watch/', include('watch.urls')),
-    path('login/', include('watch.urls')),
-]
+    path('', include('watch.urls')),
+    path('login/', include('login.urls'))
+]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
