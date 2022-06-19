@@ -2,8 +2,20 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
-<<<<<<< HEAD
+class Profile(models.Model):
+    user = models.OneToOneField(User,null=True,on_delete=models.CASCADE)
+    prof_pic = models.ImageField(blank=True, upload_to='media')
+    bio = models.TextField(blank=True, max_length=255)
+    website = models.URLField(blank=True, max_length=50)
+    name = models.CharField(blank=True,max_length=50)
 
+    def __str__(self):
+        return self.name
+
+    def save_profile(self):
+        '''Add Profile to database'''
+        self.save()
+        
 #business model
 class Business(models.Model):
     bsn_name= models.CharField(max_length=100)
@@ -28,7 +40,6 @@ class Business(models.Model):
     def update_business(self):
         self.update()
         
-=======
 class Posts(models.Model):
     image = models.ImageField(upload_to = 'posts/',default='IMAGE')
     title =  models.CharField(max_length =30)
@@ -37,4 +48,3 @@ class Posts(models.Model):
 
     def __str__(self):
         return self.title
->>>>>>> 8b42fc756cdd53586df8844f3d316211bc29cb45
