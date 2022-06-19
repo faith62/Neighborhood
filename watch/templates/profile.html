@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="pt-3 d-flex justify-content-center">
+    <!-- About user -->
+    <div class="row user-profile-display pb-3">
+        <div class="col-md-4 profile_section_one">
+            {% if user_profile.prof_pic %}
+            <img src="{{user_profile.profile_photo.url}}" class="prof_pic rounded-circle ig-image-accounts" alt="" srcset="">
+            {% else %}
+            {% load static %}
+            <img src="{% static 'css/assets/user-svgrepo-com.svg' %}" class="prof_pic rounded-circle ig-image-accounts" alt=""
+                srcset="">
+            {% endif %}
+        </div>
+        <div class="col-md-5">
+            <h4 class="font-weight-bold">{{user_profile.user.username}}</h4>
+            <div class="profile_section_two">
+                <p class="font-weight-bold">{{user_profile.name}}</p>
+                <p>{{user_profile.bio}}</p>
+                <p class="font-weight-bold">Neighborhood: {{user_profile.neighborhood.name}}</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <a href="{% url 'profile_update' user_profile.user.username %}">Update Profile</a>
+            <a href="{% url 'profile_update' user_profile.user.username %}">New Business</a>
+        </div>
+    </div>
+    <hr>
+</div>
+{% endblock %}

@@ -8,6 +8,9 @@ urlpatterns = [
     path('signup/',views.signup,name='signup'),
     path('logout/',views.logoutuser,name='logout'),
 
+    path('profile/<id>/',views.profile,name='user_profile'),
+    path('profile_update/<str:username>/',views.profile_update,name='profile_update'),
+
     path('post-create/',views.post_create,name='post-create'),
 
     path('amenity/police/',views.police,name='police'),
