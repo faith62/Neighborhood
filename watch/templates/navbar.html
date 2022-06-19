@@ -16,7 +16,7 @@
                 {% load static %}
                 <img src="{% static 'css/assets/user-profile-svgrepo-com.svg' %}" title="Profile">
             </a></li>
-            <li class="nav-items"><a href="" >
+            <li class="nav-items"><a href="{% url 'logout' %}" >
                 {% load static %}
                 <img src="{% static 'css/assets/logout-svgrepo-com.svg' %}" title="Logout">
             </a></li>
