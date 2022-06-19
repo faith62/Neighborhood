@@ -70,7 +70,7 @@ class Business(models.Model):
         self.update()
         
 class Posts(models.Model):
-    image = models.ImageField(upload_to = 'posts/',default='IMAGE')
+    image = models.ImageField(upload_to = 'media/',default='IMAGE')
     title =  models.CharField(max_length =30)
     description = models.TextField()
     profile = models.ForeignKey(Profile,on_delete=models.SET_NULL, null=True)
