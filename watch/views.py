@@ -1,4 +1,5 @@
 from multiprocessing import context
+import re
 from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -71,3 +72,27 @@ def fastfood(request):
         'neighbourhood':neighbourhood
         }
     return render(request,'amenities/fastfood.html',context=context)
+
+def create_business(request):
+    business_create_form = BusinessForm()
+    if request.method == 'POST':
+        business_create_form  = BusinessForm(request.POST, request.FILES)
+        if business_create_form.is_valid():
+            business_user = request.user
+            bsn_name = business_create_form.get('bsn_name')
+            bsn_image = business_create_form.get('bsn_image')
+            bsn_email = business_create_form.get('bsn_email')
+            category = business_create_form.get('category')
+            weburl = business_create_form.get('weburl')
+            phone = business_create_form.get('phone')
+
+            new_business = Business( bsn_name=bsn_name,bsn_email=bsn_email,bsn_image=bsn_image,category=category,weburl=weburl,phone=phone)
+
+            new_business.save()            
+            
+            return redirect('homepage')
+
+    context={
+        'business_create_form':business_create_form
+    }
+    return render(request,'watch/new_business.html',context=context)
