@@ -138,6 +138,41 @@ def post_create(request):
     }
     return render(request,'watch/post_create.html',context=context)
 
+def bussiness_create(request):
+    business_create_form = BusinessCreateForm()
+
+    if request.method == "POST":
+        business_create_form = BusinessCreateForm(request.POST,request.FILES)
+        if business_create_form.is_valid():
+            user = request.user
+            
+            bsn_name = business_create_form.cleaned_data.get('bsn_name')
+            bsn_email = business_create_form.cleaned_data.get('bsn_email')
+            phone = business_create_form.cleaned_data.get('phone')
+            weburl = business_create_form.cleaned_data.get('weburl')
+            category = business_create_form.cleaned_data.get('category')
+            bsn_image = business_create_form.cleaned_data.get('bsn_image')
+            profile = Profile.objects.get(user=user)
+            neig_id = Neighbourhood.objects.get(name=profile.neighborhood.name)
+            
+            new_bus = Business(
+                bsn_name=bsn_name,
+                bsn_email=bsn_email,
+                phone=phone,
+                weburl=weburl,
+                category=category,
+                bsn_image=bsn_image,
+                profile=profile,
+                neig_id=neig_id
+            )
+            new_bus.create_business()
+            return redirect('user_profile',user.id)
+
+    context={
+        'business_create_form':business_create_form
+    }
+    return render(request,'watch/bussiness_create.html',context=context)
+
 def police(request):
     police_station=Business.objects.filter(category='Police Station')
     context={'police_station':police_station}

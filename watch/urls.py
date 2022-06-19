@@ -12,6 +12,7 @@ urlpatterns = [
     path('profile_update/<str:username>/',views.profile_update,name='profile_update'),
 
     path('post-create/',views.post_create,name='post-create'),
+    path('bus-create/',views.bussiness_create,name='bus-create'),
 
     path('amenity/police/',views.police,name='police'),
     path('amenity/hair&grooming/',views.hair_and_grooming,name='hair&grooming'),
