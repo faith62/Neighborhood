@@ -3,7 +3,7 @@
 {% block content %}
 <div class="homepage m-4">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 section-a">
             <br>
             <h3 class="p-2 font-weight-bold">Amenities</h3>
             <ul class="">
@@ -12,6 +12,12 @@
                 <li class="nav-items"><a href="{% url 'hospital' %}">Hospitals</a></li>
                 <li class="nav-items"><a href="{% url 'malls_and_markets' %}">Malls & Market</a></li>
                 <li class="nav-items"><a href="{% url 'fastfood' %}">Food Joints</a></li>
+            </ul>
+            <h3 class="p-2 font-weight-bold">Neighbourhoods</h3>
+            <ul>
+                {% for hood in neighbourhoods %}
+                <li class="nav-items"><a href="{% url 'hood-name' hood.name %}">{{hood.name}}</a></li>
+                {% endfor %}
             </ul>
         </div>
         <div class="col-md-9 post-display">

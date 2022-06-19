@@ -106,8 +106,10 @@ def profile_update(request,username):
 
 def homepage(request):
     posts = Posts.objects.all().order_by('id').reverse()
+    neighbourhoods=Neighbourhood.objects.all
     context={
-        'posts':posts
+        'posts':posts,
+        'neighbourhoods':neighbourhoods
     }
     return render(request,'watch/index.html',context=context)
 
@@ -203,3 +205,14 @@ def fastfood(request):
         'neighbourhood':neighbourhood
         }
     return render(request,'amenities/fastfood.html',context=context)
+
+def hood(request,hoodname):
+    hoodname_id = Neighbourhood.objects.get(name=hoodname)
+    hood_people = Profile.objects.filter(neighborhood=hoodname_id)
+    hood_business = Business.objects.filter(neig_id=hoodname_id)
+
+    context={
+        'hood_people':hood_people,
+        'hood_business':hood_business
+    }
+    return render(request,'watch/hood.html',context=context)

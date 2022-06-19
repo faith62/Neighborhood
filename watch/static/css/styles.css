@@ -1,3 +1,20 @@
+ul,li{
+  list-style: none;
+}
+
+a{
+  color: black;
+}
+
+a:hover{
+  color: black;
+  font-size: larger;
+  text-decoration: none;
+}
+
+.section-a{
+  border-right: solid 2px black;
+}
 /* Homepage styling */
 .post-card{
   padding: 0.5em;
