@@ -3,4 +3,5 @@ db.sqlite3/
 *.pyc
 start.sh
 migrations/
+__pycache__/
 
