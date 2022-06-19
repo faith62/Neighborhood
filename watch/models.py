@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
+<<<<<<< HEAD
 
 #business model
 class Business(models.Model):
@@ -27,3 +28,13 @@ class Business(models.Model):
     def update_business(self):
         self.update()
         
+=======
+class Posts(models.Model):
+    image = models.ImageField(upload_to = 'posts/',default='IMAGE')
+    title =  models.CharField(max_length =30)
+    description = models.TextField()
+    
+
+    def __str__(self):
+        return self.title
+>>>>>>> 8b42fc756cdd53586df8844f3d316211bc29cb45
