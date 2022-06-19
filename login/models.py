@@ -2,18 +2,13 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.contrib.auth.base_user import BaseUserManager
 from django.db.models.deletion import CASCADE
-from django.utils.translation import ugettext_lazy as _
+# from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
 from django.db import models
 from PIL import Image
+from django.conf import settings
 
 # Create your models here.
-class Neighbourhood(models.Model):
-    """
-    Neighbourhood class to define the neighbourhoods present
-    """
-    name = models.CharField(max_length=100)
-
 class UserManager(BaseUserManager):
     def create_user(self, email, password=None):
         if email is None:
@@ -38,7 +33,7 @@ class UserManager(BaseUserManager):
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=255)
-    email = models.EmailField(_('email address'), unique=True)
+    email = models.EmailField(('email address'), unique=True)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(default=timezone.now)
@@ -48,29 +43,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
 
-
     def __str__(self):
         return self.username
 
-class Profile(models.Model):
-    name = models.CharField(max_length=70)
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name= 'profile')
-    bio = models.TextField(max_length=255)
-    location = models.CharField(max_length=55)
-    profile_photo = models.ImageField('image')
-    # neighborhood = models.ForeignKey(Neighborhood, on_delete=models.SET_NULL, null=True, blank=True)
 
-    def __str__(self) -> str:
-        return (self.user.username)
-
-    def save_profile(self):
-        super().user()
-
-        img = Image.open(self.profile_photo.path)
-        if img.height >300 or img.width > 300:
-            output_size = (300,300)
-            img.thumbnail(output_size)
-            img.save(self.profile_photo.path)
-
-    def delete_profile(self):
-        self.delete()

@@ -74,6 +74,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Hood.wsgi.application'
 
+# custom user settings
+AUTH_USER_MODEL = 'login.CustomUser'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
@@ -103,7 +105,7 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-AUTH_USER_MODEL = 'login.CustomUser'
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
