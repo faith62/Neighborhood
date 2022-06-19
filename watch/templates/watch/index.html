@@ -21,7 +21,7 @@
             </ul>
         </div>
         <div class="col-md-9 post-display">
-            <div class="d-flex justify-content-center">
+            <div class="">
                 <div class="row">
                     {% for post in posts %}
                     {% if post.neighborhood == post.profile.neighborhood %}
@@ -30,7 +30,7 @@
                             <img class="card-img-top post-card-img" src="{{post.image.url}}" alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title">{{post.title}}</h5>
-                                <p class="card-text">{{post.description}}</p>
+                                <p class="">{{post.description}}</p>
                                 <p class="card-text">Post by: {{post.profile.name}}</p>
                             </div>
                         </div>

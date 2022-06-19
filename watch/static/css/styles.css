@@ -1,9 +1,15 @@
+body{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+}
+
 ul,li{
   list-style: none;
 }
 
 a{
   color: black;
+  font-weight: 400;
 }
 
 a:hover{
@@ -15,11 +21,28 @@ a:hover{
 .section-a{
   border-right: solid 2px black;
 }
+
+.page-title{
+  font-family: 'Sacramento', cursive;
+  font-weight: bolder;
+  letter-spacing: 3px;
+}
+
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Sacramento', cursive;
+  letter-spacing: 2px;
+  font-weight: 400;
+}
 /* Homepage styling */
+.card{
+  font-weight: 500;
+}
+
 .post-card{
   padding: 0.5em;
   margin: 0.5em;
   border: none;
+  height: 20rem;
 }
 
 .post-card-img{
@@ -27,7 +50,8 @@ a:hover{
 }
 
 .post-display{
-  max-height: 40rem;
+  height: 80vh;
+  max-height: 80vh;
   overflow-y: scroll;
 }
 

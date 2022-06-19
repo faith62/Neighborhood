@@ -125,7 +125,7 @@ def post_create(request):
             title = post_create_form.cleaned_data.get('title')
             description = post_create_form.cleaned_data.get('description')
             profile = Profile.objects.get(user=post_user)
-            neighborhood = Neighbourhood.objects.get(neighborhood=post_user.neighborhood.name)
+            neighborhood = Neighbourhood.objects.get(name=profile.neighborhood.name)
             
             new_post = Posts(
                 image=image,

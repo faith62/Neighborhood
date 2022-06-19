@@ -17,22 +17,21 @@
     {% bootstrap_css %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     {% load static %}
-    <!-- <link rel="icon" type="image/x-icon" href="{% static 'css/assets/ig-favicon.png' %}"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Grand+Hotel&family=Work+Sans:wght@300&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&family=Sacramento&display=swap"
         rel="stylesheet">
     {% endblock %}
 
 </head>
 
 <body>
-    
+
     {% include "navbar.html" %}
-    
+
     {% block content %}{% endblock %}
     {% block scripts %}
-    
+
     <script src="https://kit.fontawesome.com/aee799c668.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -47,7 +46,7 @@
         crossorigin="anonymous"></script>
 
     <script src="{% static 'js/scripts.js' %}"></script>
-    
+
     {% bootstrap_javascript %}
     {% endblock %}
 </body>
