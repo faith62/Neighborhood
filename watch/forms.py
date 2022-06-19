@@ -6,3 +6,8 @@ class PostCreateForm(ModelForm):
     class Meta:
         model = Posts
         fields = ['image','title','description']
+
+class BusinessForm(forms.ModelForm):
+    class Meta:
+        model = Business
+        fields = ['bsn_image','bsn_name','bsn_email','Category','weburl','phone']
