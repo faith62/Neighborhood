@@ -32,3 +32,4 @@ csrf_exempt
 def ProfileDetail(request):
     current_user = request.user
     return render(request, 'profile_details.html', {'current_user': current_user})
+    
