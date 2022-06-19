@@ -13,7 +13,7 @@ class Neighbourhood(models.Model):
     name = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
     population = models.IntegerField()
-    admin = models.ForeignKey("UserManager", on_delete=models.CASCADE, related_name='hood',default=none,null=true)
+    admin = models.ForeignKey("Profile", on_delete=models.CASCADE, related_name='hood',default=none,null=true)
     description = models.TextField()
     police = models.IntegerField()
     health = models.IntegerField()
@@ -69,7 +69,7 @@ class Profile(models.Model):
     bio = models.TextField(max_length=255)
     location = models.CharField(max_length=55)
     profile_photo = models.ImageField('image')
-    # neighborhood = models.ForeignKey(Neighborhood, on_delete=models.SET_NULL, null=True, blank=True)
+    neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.SET_NULL, null=True, blank=True)
 
 
     def __str__(self) -> str:
@@ -92,7 +92,7 @@ class Business(models.Model):
     bsn_name= models.CharField(max_length=100)
     user = models.ForeignKey(CustomUser,on_delete=models.CASCADE,blank=True,null = True,)
     bsn_email= models.EmailField(max_length = 254)
-    # neig_id = models.ForeignKey(Neighborhood, on_delete=models.CASCADE)
+    neig_id = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.bsn_name
