@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'login',
     'watch',
     'bootstrap4',
     'rest_framework',
@@ -75,9 +74,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Hood.wsgi.application'
-
-# custom user settings
-AUTH_USER_MODEL = 'login.CustomUser'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases

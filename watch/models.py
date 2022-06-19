@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
-from login.models import CustomUser
 from django.conf import settings
 from phonenumber_field.modelfields import PhoneNumberField
 
@@ -15,9 +14,8 @@ class Neighbourhood(models.Model):
 
 class Profile(models.Model):
     name = models.CharField(max_length=70)
-    user = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name= 'profile')
+    user = models.OneToOneField(User,on_delete=models.CASCADE,related_name= 'profile')
     bio = models.TextField(max_length=255)
-    location = models.CharField(max_length=55)
     profile_photo = models.ImageField('image', upload_to='media')
     neighborhood = models.ForeignKey(Neighbourhood, on_delete=models.SET_NULL, null=True, blank=True)
 
@@ -47,7 +45,7 @@ class Business(models.Model):
     )
     bsn_image = models.ImageField('image', upload_to='media',blank=True)
     bsn_name= models.CharField(max_length=100)
-    user = models.ForeignKey(CustomUser,on_delete=models.CASCADE,blank=True,null = True,)
+    profile = models.ForeignKey(Profile,on_delete=models.CASCADE,blank=True,null = True,)
     bsn_email= models.EmailField(max_length = 254)
     phone = PhoneNumberField(blank=True)
     category = models.CharField(max_length=50, null=True, choices=CATEGORY)
