@@ -1,8 +1,5 @@
 virtual/
-<<<<<<< HEAD
 .env
-.pyc
-=======
 *.pyc
 start.sh
->>>>>>> 77ddcf0a47a3cf9930dd1e9c9a08ac05232b2c2d
+migrations
