@@ -1,41 +1,73 @@
-from email import message
-from django.shortcuts import render
-from django.http import Http404
+from multiprocessing import context
+from django.shortcuts import render, redirect,get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from watch.models import Posts
+from .decorators import *
+from .forms import *
+from django.contrib.auth import authenticate, login, logout
+from django.core.mail import send_mail,BadHeaderError
 
-from rest_framework.response import Response
-from rest_framework.views import APIView
-from .models import Business
 
-from .serializer import BusinessSerializer
-from rest_framework import status
+def homepage(request):
+    posts = Posts.objects.all().order_by('id').reverse()
+    context={
+        'posts':posts
+    }
+    return render(request,'watch/index.html',context=context)
 
-# Create your views here.
-class BusinessList(APIView):
-    def get(self, request, format=None):
-        all_business = Business.objects.all()
-        serializers = BusinessSerializer(all_business, many=True)
-        return Response(serializers.data)
+def post_create(request):
+    post_create_form = PostCreateForm()
 
-    def post(self, request, format=None):
-        serializers = BusinessSerializer(data=request.data)
-        if serializers.is_valid():
-            serializers.save()
-            return Response(serializers.data, status=status.HTTP_201_CREATED)
-        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+    if request.method == "POST":
+        post_create_form = PostCreateForm(request.POST,request.FILES)
+        if post_create_form.is_valid():
+            post_user = request.user
+            
+            image = post_create_form.cleaned_data.get('image')
+            title = post_create_form.cleaned_data.get('title')
+            description = post_create_form.cleaned_data.get('description')
+            profile = Profile.objects.get(user=post_user)
+            
+            new_post = Posts(
+                image=image,
+                title=title,
+                description=description,
+                profile=profile
+            )
+            new_post.save_post()
+            return redirect('homepage')
 
-    def business(request):
-        business =Business.objects.all()
-        
-        return render(request,'', {'business':business})
+    context={
+        'post_create_form':post_create_form
+    }
+    return render(request,'watch/post_create.html',context=context)
 
-    def search_business(request):
-        if 'business' in request.GET and request.GET["business"]:
-            business_name = request.GET.get("business")
-            searched_business = Business.find_business(business_name)
-            message = f"{business_name}"
+def police(request):
+    police_station=Business.objects.filter(category='Police Station')
+    context={'police_station':police_station}
+    return render(request,'amenities/police.html',context=context)
 
-            return render(request, '',{"message":message,"businesses": searched_business})
+def hair_and_grooming(request):
+    hair_and_grooming=Business.objects.filter(category='Hair&Grooming')
+    context={'hair_and_grooming':hair_and_grooming}
+    return render(request,'amenities/hair&grooming.html',context=context)
 
-        else:
-            message = "You haven't searched for any term"
-            return render(request, '',{"message":message})
+def hospital(request):
+    hospital=Business.objects.filter(category='Hospital')
+    context={'hospital':hospital}
+    return render(request,'amenities/hospital.html',context=context)
+
+def malls_and_markets(request):
+    malls=Business.objects.filter(category='Mall&Markets')
+    context={'malls':malls}
+    return render(request,'amenities/malls.html',context=context)
+
+def fastfood(request):
+    fastfood=Business.objects.filter(category='Fast Foods')
+    neighbourhood = Neighbourhood.objects.all()
+    context={
+        'fastfood':fastfood,
+        'neighbourhood':neighbourhood
+        }
+    return render(request,'amenities/fastfood.html',context=context)

@@ -1,0 +1,25 @@
+<header class="main-header">
+    <a href="{% url 'homepage' %}" class="brand-logo">
+        <h2 class="page-title" title="HomePage">TheHood</h2>
+    </a>
+    <nav class="main-nav">
+        <ul>
+            <li class="nav-items"><a href="{% url 'homepage' %}" title="HomePage" >
+                {% load static %}
+                <img src="" title="HomePage" alt="" srcset="">
+            </a></li>
+            <li class="nav-items"><a href="{% url 'post-create' %}" >
+                {% load static %}
+                <img src="{% static 'css/assets/add-svgrepo-com.svg' %}" title="Create Post">
+            </a></li>
+            <li class="nav-items"><a href="" >
+                {% load static %}
+                <img src="{% static 'css/assets/user-profile-svgrepo-com.svg' %}" title="Profile">
+            </a></li>
+            <li class="nav-items"><a href="" >
+                {% load static %}
+                <img src="{% static 'css/assets/logout-svgrepo-com.svg' %}" title="Logout">
+            </a></li>
+        </ul>
+    </nav>
+</header>

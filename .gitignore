@@ -1,2 +1,8 @@
 virtual/
 migrations/
+*.pyc
+start.sh
+db.sqlite3
+
+
+
