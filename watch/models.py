@@ -10,7 +10,7 @@ class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name= 'profile')
     bio = models.TextField(max_length=255)
     location = models.CharField(max_length=55)
-    profile_photo = models.ImageField('image')
+    profile_photo = models.ImageField('image', upload_to='media')
     # neighborhood = models.ForeignKey(Neighborhood, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self) -> str:
