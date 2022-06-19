@@ -5,4 +5,6 @@ urlpatterns = [
     path('',views.homepage,name='homepage'),
 
     path('post-create/',views.post_create,name='post-create'),
+
+    path('amenity/police/',views.police,name='police')
 ]

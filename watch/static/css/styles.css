@@ -4,9 +4,7 @@
   margin: 0.5em;
   border: none;
 }
-.card-img-top{
-  height: 50%;
-}
+
 .post-display{
   max-height: 40rem;
   overflow-y: scroll;

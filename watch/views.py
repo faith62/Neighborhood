@@ -42,3 +42,8 @@ def post_create(request):
         'post_create_form':post_create_form
     }
     return render(request,'watch/post_create.html',context=context)
+
+def police(request):
+    police_station=Business.objects.filter(category='Police Station')
+    context={'police_station':police_station}
+    return render(request,'amenities/police.html',context=context)

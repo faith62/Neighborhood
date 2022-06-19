@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="amenity-display m-4">
+    <div class="row">
+        <div class="d-flex justify-content-center">
+            {% for police in police_station %}
+            <div class="col-md-6">
+                <div class="card" style="width:30rem;">
+                    <div class="row">
+                        <div class="col-md-5">
+                            {% if police.bsn_image %}
+                            <img class="card-img-top" src="{{police.bsn_image.url}}" alt="Card image cap">
+                            {% else %}
+                            {% load static %}
+                            <img class="card-img-top" src="{% static 'css/assets/business-svgrepo-com.svg' %}" alt="Card image cap">
+                            {% endif %}
+                        </div>
+                        <div class="col-md-7">
+                            <div class="card-body">
+                                <h5 class="card-title">{{police.bsn_name}}</h5>
+                                <p class="card-text">{{police.bsn_email}}</p>
+                                <p class="card-text">{{police.phone}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

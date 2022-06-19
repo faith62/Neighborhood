@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from PIL import Image
 from login.models import CustomUser
 from django.conf import settings
+from phonenumber_field.modelfields import PhoneNumberField
 
 # Create your models here
 class Profile(models.Model):
@@ -31,16 +32,19 @@ class Profile(models.Model):
 #business model
 class Business(models.Model):
     CATEGORY = (
-        ('Police Station','Police'),
+        ('Police Station','Police Station'),
         ('Hair&Grooming','Hair&Grooming'),
         ('Hospital','Hospital'),
         ('Mall&Markets','Mall&Markets'),
         ('Fast Foods','Fast Foods')
     )
+    bsn_image = models.ImageField('image', upload_to='media',blank=True)
     bsn_name= models.CharField(max_length=100)
     user = models.ForeignKey(CustomUser,on_delete=models.CASCADE,blank=True,null = True,)
     bsn_email= models.EmailField(max_length = 254)
+    phone = PhoneNumberField(blank=True)
     category = models.CharField(max_length=50, null=True, choices=CATEGORY)
+    weburl = models.URLField(blank=True)
     # neig_id = models.ForeignKey(Neighborhood, on_delete=models.CASCADE)
 
     def __str__(self):
