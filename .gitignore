@@ -2,4 +2,5 @@ virtual/
 db.sqlite3/
 *.pyc
 start.sh
+migrations/
 
