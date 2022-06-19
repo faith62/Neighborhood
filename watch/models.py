@@ -74,6 +74,7 @@ class Posts(models.Model):
     title =  models.CharField(max_length =30)
     description = models.TextField()
     profile = models.ForeignKey(Profile,on_delete=models.SET_NULL, null=True)
+    neighborhood = models.ForeignKey(Neighbourhood, on_delete=models.SET_NULL, null=True, blank=True)
 
     def save_post(self):
         '''Add Post to database'''
