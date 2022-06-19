@@ -65,5 +65,9 @@ def malls_and_markets(request):
 
 def fastfood(request):
     fastfood=Business.objects.filter(category='Fast Foods')
-    context={'fastfood':fastfood}
+    neighbourhood = Neighbourhood.objects.all()
+    context={
+        'fastfood':fastfood,
+        'neighbourhood':neighbourhood
+        }
     return render(request,'amenities/fastfood.html',context=context)
