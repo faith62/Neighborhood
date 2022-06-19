@@ -66,5 +66,9 @@ class Posts(models.Model):
     description = models.TextField()
     profile = models.ForeignKey(Profile,on_delete=models.SET_NULL, null=True)
 
+    def save_post(self):
+        '''Add Post to database'''
+        self.save()
+
     def __str__(self):
         return self.title

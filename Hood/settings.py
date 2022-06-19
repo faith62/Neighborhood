@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'watch',
     'bootstrap4',
     'rest_framework',
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [
