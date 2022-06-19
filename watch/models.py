@@ -30,9 +30,17 @@ class Profile(models.Model):
         
 #business model
 class Business(models.Model):
+    CATEGORY = (
+        ('Police Station','Police'),
+        ('Hair&Grooming','Hair&Grooming'),
+        ('Hospital','Hospital'),
+        ('Mall&Markets','Mall&Markets'),
+        ('Fast Foods','Fast Foods')
+    )
     bsn_name= models.CharField(max_length=100)
     user = models.ForeignKey(CustomUser,on_delete=models.CASCADE,blank=True,null = True,)
     bsn_email= models.EmailField(max_length = 254)
+    category = models.CharField(max_length=50, null=True, choices=CATEGORY)
     # neig_id = models.ForeignKey(Neighborhood, on_delete=models.CASCADE)
 
     def __str__(self):
