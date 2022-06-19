@@ -47,3 +47,23 @@ def police(request):
     police_station=Business.objects.filter(category='Police Station')
     context={'police_station':police_station}
     return render(request,'amenities/police.html',context=context)
+
+def hair_and_grooming(request):
+    hair_and_grooming=Business.objects.filter(category='Hair&Grooming')
+    context={'hair_and_grooming':hair_and_grooming}
+    return render(request,'amenities/hair&grooming.html',context=context)
+
+def hospital(request):
+    hospital=Business.objects.filter(category='Hospital')
+    context={'hospital':hospital}
+    return render(request,'amenities/hospital.html',context=context)
+
+def malls_and_markets(request):
+    malls=Business.objects.filter(category='Mall&Markets')
+    context={'malls':malls}
+    return render(request,'amenities/malls.html',context=context)
+
+def fastfood(request):
+    fastfood=Business.objects.filter(category='Fast Foods')
+    context={'fastfood':fastfood}
+    return render(request,'amenities/fastfood.html',context=context)
