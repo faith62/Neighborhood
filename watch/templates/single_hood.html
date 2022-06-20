@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            
+            <h5 class="card-title">{{homes.name}}</h5>
+            <p>{{homes.description}}</p>
+            <a href="{% url 'new-post'  %}" class="btn btn-primary">Create post</a>
+            
+        </div>
+    </div>
+</div>
+<div class="container_fluid">
+    <div class="row">
+        <div class="col">
+            {% for post in posts %}
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{{post.image.url}}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{post.title}}</h5>
+                    <p>{{post.description}}</p>
+                    
+                </div>
+            </div>
+            {% endfor%}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

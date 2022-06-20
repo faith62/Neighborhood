@@ -10,6 +10,7 @@
                 <img class="card-img-top" src="{{home.image.url}}" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">{{home.name}}</h5>
+                    <a href="{% url 'singlehood' home.id %}" class="btn btn-primary">View a hood</a>
                     <a href="#" class="btn btn-primary">Join a hood</a>
                 </div>
             </div>
