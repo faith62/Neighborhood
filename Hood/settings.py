@@ -14,6 +14,13 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv, find_dotenv
 
+import django_heroku
+import dj_database_url
+from decouple import config,Csv
+
+import cloudinary.uploader
+import cloudinary.api
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -22,11 +29,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-load_dotenv(find_dotenv())
-SECRET_KEY = os.environ['SECRET_KEY']
+MODE=config("MODE", default="dev")
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG =  os.environ.get('DEBUG', True)
 
 ALLOWED_HOSTS = ['*']
 
@@ -44,7 +51,10 @@ INSTALLED_APPS = [
     'watch',
     'bootstrap4',
     'rest_framework',
-    'crispy_forms',   
+    'crispy_forms',
+    'tinymce',
+    'cloudinary_storage',  
+    'cloudinary',   
     
 ]
 
@@ -64,7 +74,7 @@ ROOT_URLCONF = 'Hood.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates/')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -87,9 +97,17 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+        
     }
 }
 
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+
+
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+
+ALLOWED_HOSTS = ['127.0.0.1','']
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -133,7 +151,9 @@ STATICFILES_DIRS = [
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = '/media/'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 CRISPY_FORMS = 'bootstrap4'
 
 # Default primary key field type
@@ -143,5 +163,18 @@ CRISPY_FORMS = 'bootstrap4'
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/homes/'
 LOGOUT_REDIRECT_URL = '/'
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dgrjyra6k',
+    'API_KEY': '748511361159413',
+    'API_SECRET': 'bn0udwsD1_RzIs8Im7u_BYe26CE'
+}
+# Configure Django App for Heroku.
+django_heroku.settings(locals())
+
+UPLOADCARE = {
+    'pub_key': 'demopublickey',
+    'secret': 'demoprivatekey',
+}
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
