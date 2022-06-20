@@ -75,7 +75,7 @@ def logoutuser(request):
 
 @login_required(login_url='login')
 def profile(request,id):
-    user_profile = Profile.objects.get(id=id)
+    user_profile = Profile.objects.get(user=id)
 
     context={
         'user_profile':user_profile,
