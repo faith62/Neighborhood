@@ -13,6 +13,11 @@ from django.contrib.auth import login, authenticate
 
 from django.core.paginator import Paginator
 # Create your views here.
+def welcome(request):
+    pass
+
+    return render(request, 'welcome.html')
+
 def home(request):
     
     homes = Neighbourhood.objects.all()
