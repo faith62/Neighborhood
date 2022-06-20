@@ -10,6 +10,7 @@ urlpatterns = [
     path('new/post', views.new_post, name='new-post'),
     path('<username>/',views.UserProfile, name='profile'),
     path('profile/edit/', views.EditProfile, name='editprofile'),
+    path('new/business', views.new_business, name='new-business'),
 ]
 
 if settings.DEBUG:
