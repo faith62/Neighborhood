@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render
 from django.urls import resolve
 from .models import Neighbourhood,Profile,Posts,Business
 
-from .forms import PostForm
+from .forms import PostForm,EditProfileForm
 
 from django.shortcuts import get_object_or_404, render,redirect
 # from django.contrib.auth.decorators import login_required
@@ -45,6 +45,22 @@ def UserProfile(request, username):
     # profile = Profile.objects.all()
 
     return render(request,'profile.html',{ 'profile':profile,})
+def EditProfile(request):
+	user = request.user.id
+	profile = Profile.objects.get(user__id=user)
+	BASE_WIDTH = 400
+
+	if request.method == 'POST':
+		form = EditProfileForm(request.POST, request.FILES)
+		if form.is_valid():
+			
+			profile.save()
+			return redirect('profile')
+	else:
+		form = EditProfileForm()
+
+	
+	return render(request, 'edit_profile.html', {'form':form,})
 
 
 def register(request):
