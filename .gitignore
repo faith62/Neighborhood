@@ -2,3 +2,5 @@ virtual/
 *.pyc
 start.sh
 migrations/
+Procfile
+runtime.txt
