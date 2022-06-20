@@ -23,9 +23,9 @@ def viewhood(request, pk):
    
     return render(request, 'single_hood.html',{'homes':homes,'posts':posts})
 
-def new_post(request):
+def new_post(request,homes_id):
     current_user = request.user
-    # homes= Neighbourhood.objects.get(id=home_id)
+    homes= Neighbourhood.objects.get(id=homes_id)
 
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
@@ -33,11 +33,12 @@ def new_post(request):
             post = form.save(commit=False)
             post.editor = current_user
             post.save()
-        return redirect('home')
+        return redirect('singlehood',homes_id)
 
     else:
         form = PostForm()
-    return render(request, 'new_post.html', {"form": form})
+
+    return render(request, 'new_post.html', {"form": form,'homes':homes})
 
 def UserProfile(request, username):
     user = get_object_or_404(User, username=username)
@@ -55,7 +56,7 @@ def EditProfile(request):
 		if form.is_valid():
 			
 			profile.save()
-			return redirect('profile')
+			return redirect('home')
 	else:
 		form = EditProfileForm()
 

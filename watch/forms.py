@@ -14,5 +14,5 @@ class EditProfileForm(forms.ModelForm):
    
     class Meta:
         model = Profile
-        exclude = ['neighborhood']
+        exclude = ['neighborhood','user']
         fields = '__all__'
