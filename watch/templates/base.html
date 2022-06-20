@@ -33,11 +33,17 @@
         rel="stylesheet"
         />
     {% endblock %}
+    <style>
+      body{
+        background-color: beige;
+      }
+    
+    </style>
 </head>
 <body>
     {% include "navbar.html" %}
     {% block content %}
-
+    
     {% endblock %}
 
     {% block scripts %}

@@ -1,5 +1,41 @@
-{% extends 'base.html' %}
-{% block content %}
+{% load bootstrap4 %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neighbourhood</title>
+
+    <!-- Bootstrap CSS -->
+    {% block styles %}
+    {% bootstrap_css %}
+   
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        {% load static %}
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
+        <!-- Font Awesome -->
+        <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        rel="stylesheet"
+        />
+        <!-- Google Fonts -->
+        <link
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+        rel="stylesheet"
+        />
+        <!-- MDB -->
+        <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.css"
+        rel="stylesheet"
+        />
+    {% endblock %}
+</head>
+<body>
+    {% block content %}
 
 <style>
     .gradient-custom {
@@ -32,10 +68,23 @@
   >
     <div class="mask gradient-custom">
       <div class="d-flex justify-content-center align-items-center h-100">
-        <h1 class="text-white mb-0">Page title</h1>
+        <a class="btn btn-dark" href="{% url 'login' %}"><h4 class="text-white mb-0">Join a Neighbourhood</h4></a>
       </div>
     </div>
   </div>
   <!-- Background image -->
 
 {% endblock %}
+
+    {% block scripts %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!-- MDB -->
+        <script
+        type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.js"
+        ></script>
+    {% bootstrap_javascript %}
+    {% endblock %}
+
+</body>
+</html>
