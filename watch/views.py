@@ -27,7 +27,7 @@ def home(request):
 def viewhood(request, pk):
     homes= Neighbourhood.objects.get(id=pk)
     posts = Posts.objects.all().filter(neighborhood_id=pk)
-    businesses = Business.objects.all().filter(neighborhood_id=pk)
+    businesses = Business.objects.all()
    
     return render(request, 'single_hood.html',{'homes':homes,'posts':posts,'businesses':businesses})
 
