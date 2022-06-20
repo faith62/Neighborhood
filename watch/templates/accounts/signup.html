@@ -16,16 +16,19 @@
                 </div>
             </div>
         </div>
-        <form class="login-form" method="POST" action="">
-            {% csrf_token %}
-            {{form|crispy}}
-            {% for message in messages%}
-            <span class="message">{{message}}</span>
-            {% endfor %}
-            <div class="text-center">
-                <input type="submit" name="Login" value="CREATE YOUR ACCOUNT" class="accounts-submit btn-primary" /><br>
-            </div>
-        </form>
+        <div class=text-center>
+            <form class="login-form" method="POST" action="">
+                {% csrf_token %}
+                {{form|crispy}}
+                {% for message in messages%}
+                <span class="message">{{message}}</span>
+                {% endfor %}
+                <div class="text-center">
+                    <input type="submit" name="Login" value="CREATE YOUR ACCOUNT"
+                        class="accounts-submit btn-primary" /><br>
+                </div>
+            </form>
+        </div>
     </div>
 
 </div>

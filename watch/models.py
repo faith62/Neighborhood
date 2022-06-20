@@ -23,13 +23,7 @@ class Profile(models.Model):
         return (self.user.username)
 
     def save_profile(self):
-        super().user()
-
-        img = Image.open(self.profile_photo.path)
-        if img.height >300 or img.width > 300:
-            output_size = (300,300)
-            img.thumbnail(output_size)
-            img.save(self.profile_photo.path)
+        self.save()
 
     def delete_profile(self):
         self.delete()
