@@ -7,6 +7,9 @@ from .forms import PostForm
 from django.shortcuts import get_object_or_404, render,redirect
 # from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login, authenticate
 # Create your views here.
 def home(request):
     
@@ -39,11 +42,11 @@ def new_post(request):
 def UserProfile(request, username):
     user = get_object_or_404(User, username=username)
     profile = Profile.objects.get(user=user)
-    
+    # profile = Profile.objects.all()
 
     return render(request,'profile.html',{ 'profile':profile,})
 
-#auth
+
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -54,6 +57,7 @@ def register(request):
             user = authenticate(username = username, password = password)
             login(request, user)
             return redirect('/login')
+
     else:
         form = UserCreationForm()
     
