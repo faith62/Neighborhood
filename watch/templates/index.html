@@ -1,18 +1,19 @@
-{% extend 'base.html' %}
+{% extends 'base.html' %}
 {% block content %}
+
 
 <div class="container_fluid">
     <div class="row">
         <div class="col">
+            {% for home in homes%}
             <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="..." alt="Card image cap">
+                <img class="card-img-top" src="{{home.image.url}}" alt="Card image cap">
                 <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <h5 class="card-title">{{home.name}}</h5>
+                    <a href="#" class="btn btn-primary">Join a hood</a>
                 </div>
             </div>
-
+            {% endfor%}
         </div>
     </div>
 </div>
