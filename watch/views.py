@@ -22,9 +22,15 @@ def home(request):
 def viewhood(request, pk):
     homes= Neighbourhood.objects.get(id=pk)
     posts = Posts.objects.all().filter(neighborhood_id=pk)
-    businesses = Business.objects.all().filter(neig_id_id=pk)
+    businesses = Business.objects.all()
    
     return render(request, 'single_hood.html',{'homes':homes,'posts':posts,'businesses':businesses})
+
+# def viewbuss(request, pk):
+#     homes= Neighbourhood.objects.get(id=pk)
+#     businesses = Business.objects.all().filter(neig_id_id=pk)
+    
+#     return render(request, 'business.html',{'businesses':businesses,'homes':homes,})
 
 def new_post(request):
     current_user = request.user
@@ -47,7 +53,7 @@ def new_post(request):
 
 def UserProfile(request, username):
     user = get_object_or_404(User, username=username)
-    profile = Profile.objects.get(user=user)
+    profile = Profile.objects.all().filter(user=user)
     url_name= resolve(request.path).url_name
 
     if url_name == "profile":
@@ -62,15 +68,16 @@ def UserProfile(request, username):
 
 def EditProfile(request):
 	user = request.user.id
-	profile = Profile.objects.get(user__id=user)
-	BASE_WIDTH = 400
+	profile = Profile.objects.all().filter(user__id=user)
+	
 
 	if request.method == 'POST':
 		form = EditProfileForm(request.POST, request.FILES)
 		if form.is_valid():
-			
+			profile = form.save()
 			profile.save()
 			return redirect('home')
+
 	else:
 		form = EditProfileForm()
 
@@ -87,7 +94,7 @@ def register(request):
             password = form.cleaned_data.get('password1')
             user = authenticate(username = username, password = password)
             login(request, user)
-            return redirect('/login')
+            return redirect('login')
 
     else:
         form = UserCreationForm()

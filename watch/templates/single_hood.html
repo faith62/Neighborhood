@@ -29,5 +29,24 @@
         </div>
     </div>
 </div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            {% for business in businesses %}
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{{business.bsn_image.url}}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{business.category}}</h5>
+                    <h5 class="card-title">{{business.bsn_name}}</h5>
+                    <p>{business.weburl}}</p>
+                    <p>Email:{{business.bsn_email}} Phone:{{business.phone }}</p>
+                    
+                </div>
+            </div>
+            {% endfor%}
+        </div>
+    </div>
+</div>
+
 
 {% endblock %}
