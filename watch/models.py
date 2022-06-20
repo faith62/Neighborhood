@@ -9,6 +9,8 @@ class Neighbourhood(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField(max_length=200)
     image = models.ImageField(upload_to = 'media/',default='IMAGE')
+    police =PhoneNumberField(blank=True)
+    health =PhoneNumberField(blank=True)
 
     def __str__(self):
         return self.name

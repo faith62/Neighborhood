@@ -15,13 +15,29 @@
 </div>
 <div class="container_fluid">
     <div class="row">
-        <div class="col">
+        <div class="col-md-8" style=" margin-top: 20px; display: flex;">
             {% for post in posts %}
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="{{post.image.url}}" alt="Card image cap">
+            <div class="card  ml-4" style="width: 22rem; height: 280px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);" >
+                <img class="card-img-top" src="{{post.image.url}}" alt="Card image cap" height="180px">
                 <div class="card-body">
                     <h5 class="card-title">{{post.title}}</h5>
                     <p>{{post.description}}</p>
+                    
+                </div>
+            </div>
+            {% endfor%}
+        </div>
+        
+        <div class="col-md-3 section-a" style=" margin-top: 20px; display: flex;">
+            
+            {% for business in businesses %}
+            <div class="card" style="width: 18rem;height: 380px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
+                <img class="card-img-top" src="{{business.bsn_image.url}}" alt="Card image cap" height="180px">
+                <div class="card-body">
+                    <h5 class="card-title">{{business.category}}</h5>
+                    <h5 class="card-title">{{business.bsn_name}}</h5>
+                    <a href="{{business.weburl}}"><p>view business</p></a>
+                    <p>Email:{{business.bsn_email}} Phone:{{business.phone }}</p>
                     
                 </div>
             </div>
@@ -31,20 +47,8 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col">
-            {% for business in businesses %}
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="{{business.bsn_image.url}}" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">{{business.category}}</h5>
-                    <h5 class="card-title">{{business.bsn_name}}</h5>
-                    <p>{business.weburl}}</p>
-                    <p>Email:{{business.bsn_email}} Phone:{{business.phone }}</p>
-                    
-                </div>
-            </div>
-            {% endfor%}
-        </div>
+    <p>Police congtact:{{homes.police}}</p> 
+    <p>Health contact:{{homes.health}}</p>  
     </div>
 </div>
 

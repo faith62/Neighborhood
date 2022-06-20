@@ -4,14 +4,14 @@
 
 <div class="container_fluid">
     <div class="row">
-        <div class="col">
+        <div class="col" style=" margin-top: 20px; display: flex;">
             {% for home in homes%}
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="{{home.image.url}}" alt="Card image cap">
+            <div class="card ml-4" style="width: 22rem;height: 280px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
+                <img class="card-img-top" src="{{home.image.url}}" alt="Card image cap" height="180px">
                 <div class="card-body">
                     <h5 class="card-title">{{home.name}}</h5>
-                    <a href="{% url 'singlehood' home.id %}" class="btn btn-primary">View a hood</a>
-                    <a href="#" class="btn btn-primary">Join a hood</a>
+                    <a href="{% url 'singlehood' home.id %}" class="btn btn-info">View a hood</a>
+                    <a href="#" class="btn btn-info">Join a hood</a>
                 </div>
             </div>
             {% endfor%}

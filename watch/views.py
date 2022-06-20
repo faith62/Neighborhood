@@ -68,7 +68,7 @@ def UserProfile(request, username):
 
 def EditProfile(request):
 	user = request.user.id
-	profile = Profile.objects.all().filter(user__id=user)
+	profile = Profile.objects.all().filter(user=user)
 	
 
 	if request.method == 'POST':
