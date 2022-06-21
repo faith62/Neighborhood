@@ -14,15 +14,15 @@
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0 text-white" type="submit">Search</button>
+        <button class="btn btn-outline-info my-2 my-sm-0 text-white" type="submit">Search</button>
       </form>
       
       <div class="ml-auto">
-        <a href="{% url 'profile' request.user %}" class="btn btn-lg btn-light mt-4 mr-4 " >Profile -<strong>{{ request.user }}</strong></a> 
+        <a href="{% url 'profile' request.user %}" class="btn btn-md btn-light mt-4 mr-4 " >Profile -<strong>{{ request.user }}</strong></a> 
       {% if user.is_authenticated %}
-        <a href="/logout/"class="btn btn-light btn-lg mt-4  ">LOGOUT</a>
+        <a href="/logout/"class="btn btn-light btn-md mt-4  ">LOGOUT</a>
         {% else %}
-        <button class="btn btn-light btn-lg mt-4 ">
+        <button class="btn btn-info btn-md mt-4 ">
          <a href="/login/" class="text-dark ">LOGIN</a>/
           <a href="register" class="text-dark ">SIGNUP</a></button>
           {% endif %}

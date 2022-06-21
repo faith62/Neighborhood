@@ -71,7 +71,7 @@ class Posts(models.Model):
     image = models.ImageField(upload_to = 'media/',default='IMAGE')
     title =  models.CharField(max_length =30)
     description = models.TextField()
-    profile = models.ForeignKey(Profile,on_delete=models.SET_NULL, null=True)
+   
     neighborhood = models.ForeignKey(Neighbourhood, on_delete=models.SET_NULL, null=True, blank=True)
     user = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
 

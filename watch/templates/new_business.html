@@ -14,20 +14,29 @@
 
 {% block styles %} {% bootstrap_css %}
   <link rel="stylesheet" href="{% static 'css/style.scc.css' %}"> {% endblock %}
-
+  <style>
+    .col-centered {
+      text-align: center;
+    }
+  </style>
 </head>
 
 <body>
-
+  <body style="background-color:#f1f1f1;">
+    <div class="row">
+      <div class="col-md-6 offset-md-3 mt-3">
+        <div class="card"  style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); background-image: linear-gradient(rgb(141, 178, 178), rgb(235, 193, 200));">
+  
   <form  action="{%url 'new-business'%}" method="post" enctype="multipart/form-data">
     {%csrf_token%}
 
     {% for field in form %}
         {% bootstrap_field field %}
     {% endfor %}
-    <input type="submit" class="btn btn-success btn-lg" value="Post">
+    <input type="submit" class="btn btn-info btn-lg" value="Post">
   </form>
-
+</div>
+</div>
    {% block scripts %}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   {% bootstrap_javascript %} {% endblock %}
