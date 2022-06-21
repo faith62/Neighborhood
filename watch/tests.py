@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.test import TestCase
 from django.urls import reverse
 
-from .models import NeighbourHood, UserProfile, Business, Post
+from .models import Neighbourhood, Posts, Profile,  Business, Posts
 
 
 # Create your tests here.
@@ -17,34 +17,34 @@ class NeighbourhoodTestCase(TestCase):
     def setUp(self):
         self.user = User(username='brie', password='testpwsd123')
         self.user.save()
-        self.profile = UserProfile(id=15, user=self.user, )
+        self.profile = Profile(id=15, user=self.user, )
         # self.profile.create_profile()
-        self.neighborhood = NeighbourHood(name='Test Neighbourhood', description='Test Description', admin=self.profile )
+        self.neighborhood = Neighbourhood(name='Test Neighbourhood', description='Test Description', admin=self.profile )
         # self.neighborhood.save()
 
     def tearDown(self):
         User.objects.all().delete()
-        UserProfile.objects.all().delete()
-        NeighborHood.objects.all().delete()
+        Profile.objects.all().delete()
+        Neighbourhood.objects.all().delete()
         self.user.delete()
 
     def test_instance(self):
-        self.assertTrue(isinstance(self.profile, UserProfile))
+        self.assertTrue(isinstance(self.profile, Profile))
 
     def test_save_profile(self):
         self.profile.create_profile()
-        after = UserProfile.objects.all()
+        after = Profile.objects.all()
         self.assertTrue(len(after) > 0)
 
     def test_save_neighborhood(self):
         self.neighborhood.save()
-        after = NeighborHood.objects.all()
+        after = Neighbourhood.objects.all()
         self.assertTrue(len(after) > 0)
 
     def test_delete_neighbourhood(self):
         self.neighborhood.save()
         self.neighborhood.delete()
-        after = NeighborHood.objects.all()
+        after = Neighbourhood.objects.all()
         self.assertTrue(len(after) == 0)
 
     def test_neighbourhood_name(self):
@@ -57,19 +57,18 @@ class BusinessTestCase(TestCase):
     def setUp(self):
         self.user = User(username='brie', password='testpwsd123')
         self.user.save()
-        self.profile = UserProfile(id=17, user=self.user, )
+        self.profile =Profile(id=17, user=self.user, )
         # self.profile.save()
-        self.neighbourhood = NeighbourHood(name='Test Neighbourhood',
+        self.neighbourhood = Neighbourhood(name='Test Neighbourhood',
                                          description='Test Description')
         self.neighborhood.save()
-        self.business = Business(name='Test Business', email="test@test.com", description='Test Description',
-                                 neighbourhood=self.neighborhood )
+        self.business = Business(name='Test Business', email="test@test.com", description='Test Description', neighbourhood=self.neighborhood )
         self.business.save()
 
     def tearDown(self):
         User.objects.all().delete()
-        UserProfile.objects.all().delete()
-        NeighbourHood.objects.all().delete()
+        Profile.objects.all().delete()
+        Neighbourhood.objects.all().delete()
         Business.objects.all().delete()
         self.user.delete()
 
@@ -107,20 +106,20 @@ class PostTestCase(TestCase):
     def setUp(self):
         self.user = User(username='brie', password='testpwsd123')
         self.user.save()
-        self.profile = UserProfile(id=17, user=self.user, )
-        self.neighborhood = NeighbourHood(name='Test Neighbourhood',description='Test Description')
+        self.profile = Profile(id=17, user=self.user, )
+        self.neighborhood = Neighbourhood(name='Test Neighbourhood',description='Test Description')
         self.neighbourhood.save()
-        self.post = Post(title='Test Post', post='Test Content', user=self.profile, hood=self.neighbourhood, )
+        self.post = Posts(title='Test Post', post='Test Content', user=self.profile, hood=self.neighbourhood, )
         self.post.save()
 
     def tearDown(self):
         User.objects.all().delete()
-        UserProfile.objects.all().delete()
-        Post.objects.all().delete()
+        Profile.objects.all().delete()
+        Posts.objects.all().delete()
         self.user.delete()
 
     def test_instance(self):
-        self.assertTrue(isinstance(self.post, Post))
+        self.assertTrue(isinstance(self.post, Posts))
 
     def test_save_post(self):
         self.post.save()
@@ -145,28 +144,28 @@ class ProfileTestCase(TestCase):
     def setUp(self):
         self.user = User(username='brie', password='testpwsd123')
         self.user.save()
-        self.profile = UserProfile(id=17, user=self.user, )
+        self.profile =Profile(id=17, user=self.user, )
         self.bio = "default bio"
-        self.neighborhood = NeighbourHood(name='Test Neighbourhood', description='Test Description' )
+        self.neighborhood = Neighbourhood(name='Test Neighbourhood', description='Test Description' )
         self.neighbourhood.save()
 
     def tearDown(self):
         User.objects.all().delete()
-        UserProfile.objects.all().delete()
-        NeighbourHood.objects.all().delete()
+        Profile.objects.all().delete()
+        Neighbourhood.objects.all().delete()
 
     def test_instance(self):
-        self.assertTrue(isinstance(self.profile, UserProfile))
+        self.assertTrue(isinstance(self.profile, Profile))
 
     def test_save_profile(self):
         self.profile.create_profile()
-        after = UserProfile.objects.all()
+        after = Profile.objects.all()
         self.assertTrue(len(after) > 0)
 
     def test_delete_profile(self):
         self.profile.create_profile()
         self.user.delete()
-        after = UserProfile.objects.all()
+        after =Profile.objects.all()
         self.assertTrue(len(after) == 0)
 
     def test_profile_user(self):
